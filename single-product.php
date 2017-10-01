@@ -152,44 +152,22 @@ get_header( 'shop' );
 <a data-serv-id="<?php echo $post->ID; ?>" class="adding_to_cart">Add to request</a>
 </div>
 
-<?php 
 
-
-print_r($_COOKIE['vallo_cf7_TEST_2cartus']);
-
- foreach ($_COOKIE['vallo_cf7_TEST_2cartus'] as $real_key => $key) {
-    echo "<br>";
-    print $key ;
-     echo "<br><br>quantity:" . $key[0];
-     echo "<br>image:" . $key[1];
- }
-
- ?>
 <script type="text/javascript">
 // display existing product in cart
 $(document).ready(function(){
-    var vallo_ready_cartus = <?php echo json_encode($_COOKIE['vallo_cf7_cartus']); ?>;
+    var vallo_ready_cartus = <?php echo json_encode($_COOKIE['vallo_cf7_cartus_3']); ?>;
     
-    <?php 
-    // set array with image list
-    $array_of_img_src = array();
-    $count_of_img_src = 0;
-foreach ($_COOKIE['vallo_cf7_cartus'] as $key => $value) {
-                    $image_arr = wp_get_attachment_image_src( get_post_thumbnail_id( $key), 'single-post-thumbnail' );               
-                    $array_of_img_src[$count_of_img_src] = $image_arr[0];   
-                    $count_of_img_src++;             
-            }
-    ?>
-    var array_of_img_src = <?php echo json_encode($array_of_img_src); ?>;
-    var count_of_img_src = 0;
-
     $.each( vallo_ready_cartus, function( key, value ) {
-                    if(value > 0){
+                    var value = value.split(',');
+                    if(value[0] > 0){
+
+                        
                     var product_cart_itemus = '<div class="cont_for_products_of_busket '+ key +' " data-prod-id="'+ key +'">';
-                    var product_cart_itemus = product_cart_itemus + '<img  src="'+array_of_img_src[count_of_img_src]+'" height="30" class="img_for_products_of_busket" title="<?php echo $product->post->post_title; ?>" data-id="<?php echo $loop->post->ID; ?>">';
+                    var product_cart_itemus = product_cart_itemus + '<img  src="'+value[1]+'" height="30" class="img_for_products_of_busket" title="<?php echo $product->post->post_title; ?>" data-id="<?php echo $loop->post->ID; ?>">';
                     
                     
-                    var product_cart_itemus = product_cart_itemus + '<input type="number" readonly class="number_of_product" value="' + value + '" />';    
+                    var product_cart_itemus = product_cart_itemus + '<input type="number" readonly class="number_of_product" value="' + value[0] + '" />';    
                     var product_cart_itemus = product_cart_itemus + '<input type="hidden" class="number_to_cart" value="500" />';  
                     var product_cart_itemus = product_cart_itemus + '<span class="dashicons dashicons-plus" data-serv-id="'+ key +'"></span>';
                     var product_cart_itemus = product_cart_itemus + '<span class="dashicons dashicons-minus" data-serv-id="'+ key +'"></span>';
@@ -199,16 +177,16 @@ foreach ($_COOKIE['vallo_cf7_cartus'] as $key => $value) {
                     
     
                     $('.product-container').prepend(product_cart_itemus);
+                
                 }else{
-                    document.cookie = 'vallo_cf7_cartus['+key+']=' + value + "; expires = Thu, 18 Dec 2013 12:00:00 UTC; path=/" ;
+                    document.cookie = 'vallo_cf7_cartus_3['+key+']=' + value + "; expires = Thu, 18 Dec 2013 12:00:00 UTC; path=/" ;
                 }
 
-            count_of_img_src = count_of_img_src + 1;
             });
 });
 </script>
 <?php 
-//print_r($array_of_img_src);
+
 ?>
         	
 
@@ -225,11 +203,12 @@ foreach ($_COOKIE['vallo_cf7_cartus'] as $key => $value) {
 
                 
                 
-                var vallo_cartus = {};
+                var vallo_cartus = [number_of_product,
+                                    '<?php  echo $image[0]; ?>'
+                                    ];
                 
-                document.cookie = 'vallo_cf7_cartus['+dataservid+']=' + number_of_product + "; path=/" ;
-                document.cookie = 'vallo_cf7_TEST_2cartus['+dataservid+']={' + number_of_product + ", 5555}; path=/" ;
-
+                document.cookie = 'vallo_cf7_cartus_3['+dataservid+']=' + vallo_cartus + "; path=/" ;
+                
 
                 ishere = 0;
                 $('.product-container .cont_for_products_of_busket').each(function(){
@@ -271,10 +250,16 @@ foreach ($_COOKIE['vallo_cf7_cartus'] as $key => $value) {
                 }else{
                 $('.cont_for_products_of_busket.' + dataservid +' .number_of_product').val(number_of_product);
                 }
+                var vallo_cartus = [number_of_product,
+                                    '<?php  echo $image[0]; ?>'
+                                    ];
 
-                document.cookie = 'vallo_cf7_cartus['+dataservid+']=' + number_of_product + "; path=/" ;
+                document.cookie = 'vallo_cf7_cartus_3['+dataservid+']=' + vallo_cartus + "; path=/" ;
             }
+
         	}
+            // end of function
+
             $(".adding_to_cart").click(function(){
                 vallo_adding_to_cart.call(this);
                 ///////////////
