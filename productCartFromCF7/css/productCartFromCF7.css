@@ -1,0 +1,67 @@
+.adding_to_cart{
+                cursor: pointer;
+                color: #000;
+                padding: 5px;
+                border: 1px solid #f58612;
+                border-radius: 5px;
+            }
+            .adding_to_cart:hover{
+                text-decoration: none;
+            }
+            .cont_for_products_of_busket{
+                /* width: 47%; */
+                position: relative;
+                width: 100%;
+                height: 40px;
+                overflow: hidden;
+                border-radius: 10px;
+                border: 1px solid #ccc;
+                display: inline-block;
+                vertical-align: middle;
+            }
+            
+            .cont_for_products_of_busket .dashicons{
+                border: 1px solid #ccc;
+                border-radius: 5px ;
+                font-size: 14px;
+                cursor: pointer;
+                padding: 3px 0px;
+                margin: 0px;
+                width: 35px;
+                position: absolute;
+            }
+
+            .cont_for_products_of_busket .dashicons-plus {
+                top: 0px;
+                right: 0px;
+                border-top-right-radius: 10px;
+                border-bottom-right-radius: 0px;
+
+            }
+            .cont_for_products_of_busket .dashicons-minus {
+                bottom: 0px;
+                right: 0px;
+                border-bottom-right-radius: 10px;
+                border-top-right-radius: 0px;
+            }
+            
+            .cont_for_products_of_busket .number_of_product{
+                font-size: 18px;
+                vertical-align: middle;
+                width: 80px;
+                border: none;
+            }
+            
+            .number_to_cart{
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                width: 80px;
+                padding: 5px;
+                display: inline-block;
+            }
+            
+            .img_for_products_of_busket{
+                height: 40px;
+                width: auto;
+                border: none;
+            }
