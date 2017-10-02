@@ -14,8 +14,9 @@ add_action( 'admin_menu', 'my_plugin_menu' );
 // lib to generate pdf from email html
 include( plugin_dir_path( __FILE__ ) . 'includes/dompdf/autoload.inc.php');
 
-// ajax section
-include( plugin_dir_path( __FILE__ ) . 'includes/ajax.php');
+###
+# style sheet function
+###
 
 function productCartFromCF7_css() {
 
@@ -25,7 +26,11 @@ wp_enqueue_style('productCartFromCF7');
 }
 add_action( 'wp_head','productCartFromCF7_css');
 
-// display exist list of products
+
+
+###
+# display exist list of products
+###
 function get_product_list() {
 ?>
 <script type="text/javascript">
@@ -36,38 +41,32 @@ function get_product_list() {
     echo $image[0]; ?>';
 </script>
 <script type='text/javascript' src='<?php echo plugins_url('/js/get_product_list.js?ver=1.8',__FILE__ ) ?>'></script>
-<script type='text/javascript' src='<?php echo plugins_url('/js/add_to_product_list.js?ver=1.9',__FILE__ ) ?>'></script>
+<?php
+// add new products to basket
+?><script type='text/javascript' src='<?php echo plugins_url('/js/add_to_product_list.js?ver=1.9',__FILE__ ) ?>'></script>
 <script type='text/javascript' src='<?php echo plugins_url('/js/add_to_product_activation.js?ver=1.2',__FILE__ ) ?>'></script>
-
-
-
 <?php
 
 
+###
+# end of base function
+###
 }
 add_action( 'wp_footer','get_product_list');
 
 
 
-function my_plugin_menu() {
-	add_options_page( 'CF7 basket', 'CF7 basket settings', 'manage_options' , 'calculator', 'plugin_options' );
+###
+# add buttom "add to cart" function
+###
+
+function add_CF7_basket_buttom(){
+global $post;
+    $buttom_container = '<div class="add_to_cart_container">
+<input type="number" class="number_to_cart" step="500" value="500" min="500" />
+<a data-serv-id="'. $post->ID . '" class="adding_to_cart">Add to request</a>
+</div>';
+echo $buttom_container;
 }
-
-function plugin_options() {
-	if ( !current_user_can( 'manage_options' ) )  {
-		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
-	}
-
-
-
-	if (isset($_GET['service'])&&isset($_GET['in_service']))
-	{
-		add_service($_GET['service']);
-	}
-
-}
-
-
-// service section
-#include( plugin_dir_path( __FILE__ ) . 'includes/service.php');
+add_action('add_CF7_basket_buttom', 'add_CF7_basket_buttom');
 
