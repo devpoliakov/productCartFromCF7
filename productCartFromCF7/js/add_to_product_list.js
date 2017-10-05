@@ -8,9 +8,9 @@
 
                 
                 
-                var vallo_cartus = [number_of_product,
-                                    produc_CF7_image,
-                                    produc_CF7_title
+                var vallo_cartus = [number_of_product + ' ',
+                                    produc_CF7_image+ ' ',
+                                    produc_CF7_title+ ' '
                                     ];
                 
                 document.cookie = 'vallo_cf7_cartus_3['+dataservid+']=' + vallo_cartus + "; path=/" ;
@@ -60,9 +60,15 @@
                 $('.cont_for_products_of_busket.' + dataservid +' .number_of_product').val(number_of_product);
                 $('#check_prod_'+ dataservid  ).val(produc_CF7_title +': ' + number_of_product);
                 }
-                var vallo_cartus = [number_of_product,
-                                    produc_CF7_image,
-                                    produc_CF7_title
+                //get img and title from existed object
+                
+                var produc_CF7_image_ishere = $('img[data-id="'+ dataservid +'"]').attr("src");
+                var produc_CF7_title_ishere = $('img[data-id="'+ dataservid +'"]').attr("title");
+
+
+                var vallo_cartus = [number_of_product+ ' ',
+                                    produc_CF7_image_ishere+ ' ',
+                                    produc_CF7_title_ishere+ ' '
                                     ];
 
                 document.cookie = 'vallo_cf7_cartus_3['+dataservid+']=' + vallo_cartus + "; path=/" ;

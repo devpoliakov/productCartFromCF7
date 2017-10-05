@@ -1,6 +1,6 @@
 // display existing product in cart
     $.each( vallo_ready_cartus, function( key, value ) {
-                    var value = value.split(',');
+                    var value = value.split(' ,');
                     if(value[0] > 0 && key > 0){
 
                         
