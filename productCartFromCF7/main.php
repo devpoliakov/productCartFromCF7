@@ -23,6 +23,11 @@ function productCartFromCF7_css() {
 wp_register_style('productCartFromCF7', plugins_url('/css/productCartFromCF7.css',__FILE__ ));
 wp_enqueue_style('productCartFromCF7');
 
+wp_register_style('CF7fields', plugins_url('/css/CF7fields.css',__FILE__ ));
+wp_enqueue_style('CF7fields');
+
+wp_register_script( 'CF7fields_control', plugins_url ('/js/CF7fields_control.js',__FILE__ ), array(), '1.2', false );
+    wp_enqueue_script( 'CF7fields_control' );
 }
 add_action( 'wp_head','productCartFromCF7_css');
 
@@ -39,11 +44,13 @@ function get_product_list() {
     var produc_CF7_image = '<?php  
     $image = wp_get_attachment_image_src( get_post_thumbnail_id( $loop->post->ID ), 'single-post-thumbnail' );
     echo $image[0]; ?>';
+    var produc_CF7_title = '<?php      
+    wp_title(''); ?>';
 </script>
-<script type='text/javascript' src='<?php echo plugins_url('/js/get_product_list.js?ver=1.8',__FILE__ ) ?>'></script>
+<script type='text/javascript' src='<?php echo plugins_url('/js/get_product_list.js?ver=1.9',__FILE__ ) ?>'></script>
 <?php
 // add new products to basket
-?><script type='text/javascript' src='<?php echo plugins_url('/js/add_to_product_list.js?ver=1.9',__FILE__ ) ?>'></script>
+?><script type='text/javascript' src='<?php echo plugins_url('/js/add_to_product_list.js?ver=2.1',__FILE__ ) ?>'></script>
 <script type='text/javascript' src='<?php echo plugins_url('/js/add_to_product_activation.js?ver=1.2',__FILE__ ) ?>'></script>
 <?php
 

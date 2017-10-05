@@ -1,4 +1,4 @@
-$(".adding_to_cart").click(function(){
+    $('body').on('click', '.adding_to_cart', function(){
     
                 vallo_adding_to_cart.call(this);
                 ///////////////

@@ -61,7 +61,8 @@
             }
             
             .img_for_products_of_busket{
-                height: 40px;
+                height: auto;
                 width: auto;
                 border: none;
+                max-width: 100px;
             }

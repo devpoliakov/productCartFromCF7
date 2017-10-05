@@ -9,7 +9,8 @@
                 
                 
                 var vallo_cartus = [number_of_product,
-                                    produc_CF7_image
+                                    produc_CF7_image,
+                                    produc_CF7_title
                                     ];
                 
                 document.cookie = 'vallo_cf7_cartus_3['+dataservid+']=' + vallo_cartus + "; path=/" ;
@@ -25,22 +26,24 @@
 
                 
                 // detecting exist product
-            if(ishere !== 1){
+            if(ishere != 1){
                     var product_cart_itemus = '<div class="cont_for_products_of_busket '+ dataservid +' " data-prod-id="'+ dataservid +'">';
-                    var product_cart_itemus = product_cart_itemus + '<img  src="'+produc_CF7_image+'" height="30" class="img_for_products_of_busket" data-id="'+ dataservid +'">';
+                    var product_cart_itemus = product_cart_itemus + '<img  src="'+produc_CF7_image+'" title="'+ produc_CF7_title +'" height="30" class="img_for_products_of_busket" data-id="'+ dataservid +'">';
                     
                     
-                    var product_cart_itemus = product_cart_itemus + '<input type="number" readonly class="number_of_product" value="' + number_of_product + '" />';    
+                    var product_cart_itemus = product_cart_itemus + '<input type="number" name="number_'+ dataservid +'" readonly class="number_of_product" value="' + number_of_product + '" />';    
                     var product_cart_itemus = product_cart_itemus + '<input type="hidden" class="number_to_cart" value="500" />';  
                     var product_cart_itemus = product_cart_itemus + '<span class="dashicons dashicons-plus" data-serv-id="'+ dataservid +'"></span>';
                     var product_cart_itemus = product_cart_itemus + '<span class="dashicons dashicons-minus" data-serv-id="'+ dataservid +'"></span>';
                     //var product_cart_itemus = product_cart_itemus + '<span class="service-closer dashicons dashicons-no"></span>';
     
-                    var product_cart_itemus = product_cart_itemus + '</div>';
-                    
-    
+                    var product_cart_itemus = product_cart_itemus + '</div>'; 
                     $('.product-container').prepend(product_cart_itemus);
-    
+
+                    //simple send data to email
+                    var product_cart_itemus_for_send = '<input type="checkbox" checked id="check_prod_'+ dataservid +'" name="cart-product['+ dataservid +']" value="'+ produc_CF7_title +': ' + number_of_product + '">';
+                    $('.cart-product .hiddenus').prepend(product_cart_itemus_for_send);
+
             } else if(ishere == 1){
                 //
                 if (plus_orminus == 'minus'){
@@ -51,12 +54,15 @@
                 // delete if < 0 
                 if (number_of_product < 1 ){
                     $('.cont_for_products_of_busket.'+dataservid ).remove();
+                    $('#check_prod_'+ dataservid  ).remove();
 
                 }else{
                 $('.cont_for_products_of_busket.' + dataservid +' .number_of_product').val(number_of_product);
+                $('#check_prod_'+ dataservid  ).val(produc_CF7_title +': ' + number_of_product);
                 }
                 var vallo_cartus = [number_of_product,
-                                    produc_CF7_image
+                                    produc_CF7_image,
+                                    produc_CF7_title
                                     ];
 
                 document.cookie = 'vallo_cf7_cartus_3['+dataservid+']=' + vallo_cartus + "; path=/" ;
