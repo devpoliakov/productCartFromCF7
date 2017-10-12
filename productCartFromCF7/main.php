@@ -31,13 +31,22 @@ wp_register_script( 'CF7fields_control', plugins_url ('/js/CF7fields_control.js'
 }
 add_action( 'wp_head','productCartFromCF7_css');
 
-
+//$cate = get_queried_object();
+//$cateID = $cate->term_id;
 
 ###
 # display exist list of products
 ###
 function get_product_list() {
+/**
+if You haven't category object, please use this request
+$catData = current_category_data($post->ID);
+*/
+$catData = current_category_data($post->ID);
+
 ?>
+
+
 <script type="text/javascript">
 
     var vallo_ready_cartus = <?php echo json_encode($_COOKIE['vallo_cf7_cartus_3']); ?>;
@@ -46,6 +55,8 @@ function get_product_list() {
     echo $image[0]; ?>';
     var produc_CF7_title = '<?php      
     wp_title(''); ?>';
+    var produc_CF7_category = '<?php      
+    echo $catData->term_id; ?>';
 </script>
 <script type='text/javascript' src='<?php echo plugins_url('/js/get_product_list.js?ver=1.9',__FILE__ ) ?>'></script>
 <?php

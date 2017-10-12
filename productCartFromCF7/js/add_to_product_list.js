@@ -10,7 +10,8 @@
                 
                 var vallo_cartus = [number_of_product + ' ',
                                     produc_CF7_image+ ' ',
-                                    produc_CF7_title+ ' '
+                                    produc_CF7_title+ ' ',
+                                    produc_CF7_category+ ' '
                                     ];
                 
                 document.cookie = 'vallo_cf7_cartus_3['+dataservid+']=' + vallo_cartus + "; path=/" ;
@@ -38,6 +39,14 @@
                     //var product_cart_itemus = product_cart_itemus + '<span class="service-closer dashicons dashicons-no"></span>';
     
                     var product_cart_itemus = product_cart_itemus + '</div>'; 
+
+
+                    if(produc_CF7_category == 178){
+                    var product_cart_itemus = product_cart_itemus + '<div class="filehider">';
+                    var product_cart_itemus = product_cart_itemus + '<span class="wpcf7-form-control-wrap radio-with_print"><span class="wpcf7-form-control wpcf7-radio"><span class="wpcf7-list-item first"><label><input type="radio" name="radio-with_print['+ dataservid +']" value="with print"><span class="wpcf7-list-item-label">with print</span></label></span><span class="wpcf7-list-item last"><label><input type="radio" name="radio-with_print['+ dataservid +']" value="without print" checked="checked"><span class="wpcf7-list-item-label">without print</span></label></span></span></span><p></p>';
+                    var product_cart_itemus = product_cart_itemus + '</div>';
+                    }
+
                     $('.product-container').prepend(product_cart_itemus);
 
                     //simple send data to email
@@ -68,7 +77,8 @@
 
                 var vallo_cartus = [number_of_product+ ' ',
                                     produc_CF7_image_ishere+ ' ',
-                                    produc_CF7_title_ishere+ ' '
+                                    produc_CF7_title_ishere+ ' ',
+                                    produc_CF7_category+ ' '
                                     ];
 
                 document.cookie = 'vallo_cf7_cartus_3['+dataservid+']=' + vallo_cartus + "; path=/" ;
